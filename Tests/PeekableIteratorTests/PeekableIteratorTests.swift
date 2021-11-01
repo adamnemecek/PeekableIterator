@@ -43,11 +43,4 @@ final class PeekableIteratorTests: XCTestCase {
 
         XCTAssertTrue(true)
     }
-
-    static var allTests = [
-        ("testPeekFirstCharacter", testPeekFirstElement),
-        ("testPeekEmptyIterator", testPeekEmptyIterator),
-        ("testNextConsumesIterator", testPeekNthElement),
-        ("testNextConsumesTheWholeIterator", testNextConsumesTheWholeIterator)
-    ]
 }

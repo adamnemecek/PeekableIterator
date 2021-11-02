@@ -21,7 +21,7 @@ public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
 }
 
 public extension Sequence {
-    func peekableIterator() -> PeekableIterator<Self.Iterator> {
+    func peekable() -> PeekableIterator<Self.Iterator> {
         return PeekableIterator(self.makeIterator())
     }
 }

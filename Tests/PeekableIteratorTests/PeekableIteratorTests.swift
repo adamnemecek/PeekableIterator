@@ -7,7 +7,7 @@ final class PeekableIteratorTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
         let text = "foobar"
-        let iter = text.peekableIterator()
+        let iter = text.peekable()
 
         XCTAssertEqual(iter.peek(), "f")
     }
@@ -17,14 +17,14 @@ final class PeekableIteratorTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
         let array = [Int]()
-        let iter = array.peekableIterator()
+        let iter = array.peekable()
 
         XCTAssertEqual(iter.peek(), nil)
     }
 
     func testPeekNthElement() {
         let array = [1, 2, 3, 4, 5]
-        var iter = array.peekableIterator()
+        var iter = array.peekable()
 
         let _ = iter.next()
         let _ = iter.next()
@@ -34,7 +34,7 @@ final class PeekableIteratorTests: XCTestCase {
 
     func testNextConsumesTheWholeIterator() {
         let array = [1, 2, 3, 4, 5]
-        var iter = array.peekableIterator()
+        var iter = array.peekable()
 
         var item : Int?
         repeat {

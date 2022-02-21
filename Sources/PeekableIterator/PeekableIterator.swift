@@ -1,5 +1,5 @@
 public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
-    var peeked : Base.Element?
+    var peeked: Base.Element?
     var iter: Base
 
     public init(_ base: Base) {
@@ -7,10 +7,12 @@ public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
         peeked = iter.next()
     }
 
+    @inline(__always)
     public func peek() -> Base.Element? {
         return peeked
     }
 
+    @inline(__always)
     public mutating func next() -> Base.Element? {
         defer {
             peeked = iter.next()

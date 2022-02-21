@@ -23,12 +23,14 @@ public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
 }
 
 public extension Sequence {
+    @inline(__always)
     func peekable() -> PeekableIterator<Self.Iterator> {
         return PeekableIterator(self.makeIterator())
     }
 }
 
 public extension IteratorProtocol {
+    @inline(__always)
     func peekable() -> PeekableIterator<Self> {
         PeekableIterator(self)
     }

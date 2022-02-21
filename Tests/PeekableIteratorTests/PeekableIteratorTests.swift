@@ -26,8 +26,8 @@ final class PeekableIteratorTests: XCTestCase {
         let array = [1, 2, 3, 4, 5]
         var iter = array.peekable()
 
-        let _ = iter.next()
-        let _ = iter.next()
+        _ = iter.next()
+        _ = iter.next()
 
         XCTAssertEqual(iter.peek(), 3)
     }
@@ -36,7 +36,7 @@ final class PeekableIteratorTests: XCTestCase {
         let array = [1, 2, 3, 4, 5]
         var iter = array.peekable()
 
-        var item : Int?
+        var item: Int?
         repeat {
             item = iter.next()
         } while item != nil

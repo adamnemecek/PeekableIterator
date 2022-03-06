@@ -1,5 +1,8 @@
 public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
+    @usableFromInline
     var peeked: Base.Element?
+
+    @usableFromInline
     var iter: Base
 
     public init(_ base: Base) {
@@ -7,12 +10,12 @@ public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
         peeked = iter.next()
     }
 
-    @inline(__always)
+    @inlinable @inline(__always)
     public func peek() -> Base.Element? {
         return peeked
     }
 
-    @inline(__always)
+    @inlinable @inline(__always)
     public mutating func next() -> Base.Element? {
         defer {
             peeked = iter.next()
@@ -22,16 +25,16 @@ public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
     }
 }
 
-public extension Sequence {
-    @inline(__always)
-    func peekable() -> PeekableIterator<Self.Iterator> {
+extension Sequence {
+    @inlinable @inline(__always)
+    public func peekable() -> PeekableIterator<Self.Iterator> {
         return PeekableIterator(self.makeIterator())
     }
 }
 
-public extension IteratorProtocol {
-    @inline(__always)
-    func peekable() -> PeekableIterator<Self> {
+extension IteratorProtocol {
+    @inlinable @inline(__always)
+    public func peekable() -> PeekableIterator<Self> {
         PeekableIterator(self)
     }
 }

@@ -1,4 +1,6 @@
 public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
+    public typealias Element = Base.Element
+
     @usableFromInline
     var peeked: Base.Element?
 
@@ -6,17 +8,17 @@ public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
     var iter: Base
 
     public init(_ base: Base) {
-        iter = base
-        peeked = iter.next()
+        self.iter = base
+        self.peeked = iter.next()
     }
 
     @inlinable @inline(__always)
-    public func peek() -> Base.Element? {
-        return peeked
+    public func peek() -> Element? {
+        peeked
     }
 
     @inlinable @inline(__always)
-    public mutating func next() -> Base.Element? {
+    public mutating func next() -> Element? {
         defer {
             peeked = iter.next()
         }
@@ -27,8 +29,8 @@ public struct PeekableIterator<Base: IteratorProtocol>: IteratorProtocol {
 
 extension Sequence {
     @inlinable @inline(__always)
-    public func peekable() -> PeekableIterator<Self.Iterator> {
-        return PeekableIterator(self.makeIterator())
+    public func peekable() -> PeekableIterator<Iterator> {
+        PeekableIterator(self.makeIterator())
     }
 }
 
